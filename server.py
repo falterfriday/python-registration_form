@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, session, flash
 
-import re
+import re, datetime
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]*$')
@@ -36,7 +36,7 @@ def submit():
 	else:
 		flash("last name success!")
 	if len(request.form['password']) < 8:
-		flash("longer password1 required")
+		flash("longer password required")
 	elif not PASSWORD_REGEX.match(request.form['password']):
 		flash("invalid password")
 	else:
@@ -45,7 +45,13 @@ def submit():
 		flash("passwords dont match")
 	else:
 		flash("passwords match!")
+	mydate = []
+	today = datetime.date.today()
+	mydate.append(today)
+	if str(request.form['birthday']) != str(mydate[0]):
+		flash("birthday success!")
 	return redirect('/')
+
 
 
 app.run(debug=True)
