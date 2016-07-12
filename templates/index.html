@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+======================================================
+______    _ _           ______    _     _             
+|  ___|  | | |          |  ___|  (_)   | |            
+| |_ __ _| | |_ ___ _ __| |_ _ __ _  __| | __ _ _   _ 
+|  _/ _` | | __/ _ \ '__|  _| '__| |/ _` |/ _` | | | |
+| || (_| | | ||  __/ |  | | | |  | | (_| | (_| | |_| |
+\_| \__,_|_|\__\___|_|  \_| |_|  |_|\__,_|\__,_|\__, |
+                                                 __/ |
+                                                |___/ 
+======================================================
+Owner Name: Patrick A. Todd
+Profile: https://www.github.com/falterfriday
+Blog: https://falterfriday.wordpress.com/
+Version: 0.2
+Description: Never Stop Learning
+======================================================
+-->
+<html>
+<head>
+	<title>Registration Form</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<h1>Registration</h1>
+<form action='/process' method='POST'>
+	Email: <input type="text" name="email"><br>
+	First Name: <input type="text" name="f_name"><br>
+	Last Name: <input type="text" name="l_name"><br>
+	Password: <input type="password" name="password"><br>
+	Confirm Password: <input type="password" name="conf_password"><br>
+	Birthday: <input type="date" name="birthday"><br>
+	<input type="submit" name="submit" value="Submit">
+</form>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <ul>
+        	<li>{{message}}</li>
+        </ul>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</body>
+</html>
